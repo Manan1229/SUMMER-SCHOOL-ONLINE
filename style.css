@@ -1,0 +1,78 @@
+/* Calculator Vibe */
+:root {
+  --bg: #2d2d2d;
+  --container-bg: #333;
+  --display-bg: #1b1b1b;
+  --display-text: #0f0;
+  --key-bg: #4a4a4a;
+  --key-hover: #5e5e5e;
+  --func-bg: #d35400;
+  --text: #fff;
+  --font: 'Courier New', monospace;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: var(--font);
+}
+
+.calc-container {
+  background: var(--container-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  width: 340px;
+  overflow: hidden;
+}
+
+.calc-display {
+  background: var(--display-bg);
+  color: var(--display-text);
+  padding: 12px;
+  font-size: 1.4rem;
+  height: 60px;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+}
+
+.calc-btn {
+  background: var(--key-bg);
+  color: var(--text);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.calc-btn:hover {
+  background: var(--key-hover);
+}
+
+.calc-btn.func {
+  background: var(--func-bg);
+}
+
+.calc-btn.wide {
+  grid-column: span 2;
+}
