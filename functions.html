@@ -2,25 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Functions</title>
+  <title>Functions - JS Calculator Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .inputs-row {
+      display: flex;
+      gap: 1em;
+      margin-bottom: 1.2em;
+      justify-content: center;
+    }
+    .inputs-row input {
+      flex: 1 1 40%;
+      padding: 0.7em;
+      font-size: 1.1rem;
+      border-radius: var(--radius);
+      border: 1px solid #ddd;
+      outline: none;
+      background: #f9f9f9;
+      text-align: center;
+      transition: border 0.2s;
+    }
+    .inputs-row input:focus {
+      border: 1.5px solid var(--key-bg);
+      background: #fff;
+    }
+    .result-row {
+      text-align: center;
+      margin: 1.2em 0 0.5em 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--display-bg);
+      min-height: 2em;
+      letter-spacing: 1px;
+    }
+    .calc-keys {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gutter);
+    }
+    .calc-btn.wide.func {
+      grid-column: span 2;
+    }
+  </style>
 </head>
 <body>
-  <div class="calc-container">
-    <div class="calc-display" id="output">Enter Values</div>
-    <div class="calc-keys">
-      <input class="calc-btn" id="addA" type="number" placeholder="a">
-      <input class="calc-btn" id="addB" type="number" placeholder="b">
-      <button class="calc-btn func" id="btnAdd">Sum→</button>
-
-      <input class="calc-btn" id="sqrN" type="number" placeholder="n">
-      <button class="calc-btn func wide" id="btnSqr">Square→</button>
-
-      <input class="calc-btn" id="fnName" type="text" placeholder="Name">
-      <button class="calc-btn func wide" id="btnGreetFn">Greet→</button>
+  <main class="centered">
+    <div class="calc-container">
+      <div class="calc-display">Functions: Enter Numbers</div>
+      <form id="funcForm" autocomplete="off" onsubmit="return false;">
+        <div class="inputs-row">
+          <input type="number" id="num1" placeholder="First number" required>
+          <input type="number" id="num2" placeholder="Second number" required>
+        </div>
+        <div class="result-row" id="result"></div>
+        <div class="calc-keys">
+          <button class="calc-btn" type="button" onclick="operate('sum')">Sum</button>
+          <button class="calc-btn" type="button" onclick="operate('add')">Add</button>
+          <button class="calc-btn" type="button" onclick="operate('multiply')">Multiply</button>
+          <button class="calc-btn" type="button" onclick="operate('divide')">Divide</button>
+          <button class="calc-btn wide func" type="button" onclick="operate('subtract')">Subtract</button>
+        </div>
+      </form>
     </div>
-  </div>
-  <script src="js/output.js" defer></script>
-  <script src="js/functions.js" defer></script>
+    <footer>
+      <small>© 2025 Summer School Online</small>
+    </footer>
+  </main>
+  <script>
+    function operate(type) {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      let res = '';
+      if (isNaN(n1) || isNaN(n2)) {
+        res = 'Please enter both numbers!';
+      } else {
+        switch(type) {
+          case 'sum':
+          case 'add':
+            res = `${n1} + ${n2} = <b>${n1 + n2}</b>`;
+            break;
+          case 'multiply':
+            res = `${n1} × ${n2} = <b>${n1 * n2}</b>`;
+            break;
+          case 'divide':
+            res = n2 === 0 ? 'Cannot divide by zero!' : `${n1} ÷ ${n2} = <b>${n1 / n2}</b>`;
+            break;
+          case 'subtract':
+            res = `${n1} − ${n2} = <b>${n1 - n2}</b>`;
+            break;
+        }
+      }
+      document.getElementById('result').innerHTML = res;
+    }
+  </script>
 </body>
 </html>
