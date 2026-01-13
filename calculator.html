@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calc-container">
+    <div class="calc-display" id="output">Calc Mode</div>
+    <div class="calc-keys">
+      <input class="calc-btn" id="calcA" type="number" placeholder="First">
+      <select class="calc-btn" id="calcOp">
+        <option>+</option><option>−</option><option>×</option><option>÷</option>
+      </select>
+      <input class="calc-btn" id="calcB" type="number" placeholder="Second">
+      <button class="calc-btn func wide" id="btnCalc">=</button>
+    </div>
+  </div>
+  <script src="js/output.js" defer></script>
+  <script src="js/calculator.js" defer></script>
+</body>
+</html>
